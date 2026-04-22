@@ -5,4 +5,4 @@ author: "Saturna19-fr"
 runs:
     using: "docker"
     image: "Dockerfile"
-    entrypoint: "scripts/entrypoint.sh"
+    entrypoint: "/scripts/entrypoint.sh"
