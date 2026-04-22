@@ -1,0 +1,8 @@
+name: "Epitech Build & Coding Style"
+description: "Build avec make et rapport de coding style epiclang"
+author: "Saturna19-fr"
+
+runs:
+    using: "docker"
+    image: "Dockerfile"
+    entrypoint: "scripts/entrypoint.sh"
