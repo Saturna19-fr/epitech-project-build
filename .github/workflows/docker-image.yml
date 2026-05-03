@@ -36,7 +36,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ github.sha }}
+            ghcr.io/saturna19-fr/epitech-project-build:latest
+            ghcr.io/saturna19-fr/epitech-project-build:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
