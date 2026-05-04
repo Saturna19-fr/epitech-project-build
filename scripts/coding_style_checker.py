@@ -48,6 +48,7 @@ def main():
     if total:
         summary = f"{counter['error']} errors, {counter['warning']} warnings."
         print(f"::notice::{summary}")
+        sys.exit(1)
     else:
         print("::notice::No warnings or errors found.")
 
