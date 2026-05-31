@@ -1,0 +1,43 @@
+name: Publish tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-tags: true
+
+      - name: Get latest tag and bump patch
+        id: tag
+        run: |
+          git fetch --tags
+          LATEST=$(git tag -l "v1.0.*" | sort -V | tail -n1)
+          if [ -z "$LATEST" ]; then
+            NEW_TAG="v1.0.0"
+          else
+            PATCH=$(echo $LATEST | cut -d. -f3)
+            NEW_TAG="v1.0.$((PATCH + 1))"
+          fi
+          echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ steps.tag.outputs.new_tag }}
+          git push origin ${{ steps.tag.outputs.new_tag }}
+
+      - name: Move latest tag
+        run: |
+          git tag -f latest
+          git push origin latest --force
