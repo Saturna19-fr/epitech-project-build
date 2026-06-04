@@ -7,7 +7,7 @@ on:
     paths:
       - 'Dockerfile'
       - 'scripts/**'
-      - '.github/workflows/publish-docker.yml'
+      - '.github/workflows/docker-image.yml'
 
 permissions:
   packages: write
