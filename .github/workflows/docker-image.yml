@@ -8,6 +8,7 @@ on:
       - 'Dockerfile'
       - 'scripts/**'
       - '.github/workflows/docker-image.yml'
+  workflow_dispatch:
 
 permissions:
   packages: write
